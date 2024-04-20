@@ -196,7 +196,7 @@ class RegisterBody extends StatelessWidget {
                             //
                             //
                             // );
-                            context.pushNamed(Routes.home);
+                            context.pushNamed(Routes.mainNav);
                           }
                         },
                         style: ElevatedButton.styleFrom(

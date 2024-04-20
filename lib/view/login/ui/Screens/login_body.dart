@@ -128,7 +128,7 @@ class LoginBody extends StatelessWidget {
                             child: ElevatedButton(
                               onPressed: () async {
                                 if (formkey.currentState!.validate()) {
-                                  context.pushNamed(Routes.home);
+                                  context.pushNamed(Routes.mainNav);
                                 }
                               },
                               style: ElevatedButton.styleFrom(
