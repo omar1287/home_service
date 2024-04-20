@@ -16,7 +16,6 @@ class _SearchBarAndSetState extends State<SearchBarAndSet> {
       children: [
         Container(
           width: MediaQuery.of(context).size.width / 1.2,
-          padding: EdgeInsets.all(16),
           child: TextField(
             decoration: InputDecoration(
               labelText: 'Search',

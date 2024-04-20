@@ -47,7 +47,7 @@ class HomeBody extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text('Best Selling',style: TextStyle(color: ColorManager.dark_blue,fontSize: 20),),
+                      Text('Best Services',style: TextStyle(color: ColorManager.dark_blue,fontSize: 20),),
                       Spacer(),
                       TextButton(onPressed: () {
                         context.pushNamed(Routes.BestServices);
