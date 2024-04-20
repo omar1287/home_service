@@ -4,173 +4,96 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_services/core/Helpers/extension.dart';
 import 'package:home_services/core/Routting/Routs.dart';
 import 'package:home_services/core/Theming/colors.dart';
+import 'package:home_services/core/Theming/textstyle.dart';
+import 'package:home_services/core/component/elevated_buttom.dart';
+import 'package:home_services/core/component/text_form_field.dart';
 import 'package:home_services/view/login/logic/Login_cubit/login_cubit.dart';
 import 'package:home_services/view/login/logic/Login_cubit/login_state.dart';
+import 'package:home_services/view/login/ui/Screens/didnt_have_account.dart';
+import 'package:home_services/view/login/ui/Screens/text_welcome.dart';
 
 class LoginBody extends StatelessWidget {
-  const LoginBody({super.key});
+  LoginBody({super.key});
+
+  var mailControll = TextEditingController();
+  var passControll = TextEditingController();
+  var formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-
     return BlocConsumer<LoginCubit, LoginState>(
         builder: (context, state) {
-          var EmailControll = TextEditingController();
-          var PassWordControll = TextEditingController();
-          var formkey = GlobalKey<FormState>();
-          var provide=LoginCubit.get(context);
+          var provide = LoginCubit.get(context);
           return Scaffold(
-            backgroundColor: Colors.white,
-            body: Center(
+            body: Form(
+              key: formKey,
               child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Form(
-                    key: formkey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Login',
-                          style: Theme.of(context)
-                              .textTheme
-                              .displaySmall
-                              ?.copyWith(
-                                  color: ColorManager.dark_blue, fontSize: 40),
-                        ),
-                        SizedBox(
-                          height: 10.h,
-                        ),
-                        Text(
-                          'Login now to browse our hot offers',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge
-                              ?.copyWith(color: ColorManager.maingray),
-                        ),
-                        SizedBox(
-                          height: 30.h,
-                        ),
-                        TextFormField(
-                            controller: EmailControll,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'E-Mail should be not empty';
-                              }
-                              return null;
+                child: SafeArea(
+                  child: Center(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          const WelcomeText(),
+                          SizedBox(height: 60.h),
+                          TextFormFieldComponent(
+                            controll: mailControll,
+                            iconData: Icons.email_outlined,
+                            textValidation: 'E_Mail',
+                            voidCallback: () {},
+                            obsecure: false,
+                          ),
+                          SizedBox(
+                            height: 20.h,
+                          ),
+                          TextFormFieldComponent(
+                            controll: passControll,
+                            iconData: (provide.secuore)
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            textValidation: 'Password',
+                            voidCallback: () {
+                              provide.changeSecuore();
                             },
-                            style: const TextStyle(color: Colors.black),
-                            decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(30),
-                                    borderSide: const BorderSide(
-                                        width: 2,
-                                        color: ColorManager.maingray)),
-                                focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(30),
-                                    borderSide: const BorderSide(
-                                        width: 2,
-                                        color: ColorManager.dark_blue)),
-                                labelText: 'E-Mail',
-                                labelStyle: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: ColorManager.dark_blue),
-                                suffix: const Icon(
-                                  Icons.email,
-                                  color: ColorManager.dark_blue,
-                                ))),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        TextFormField(
-
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Password is short';
-                              }
-                              return null;
-                            },
-                            obscureText: provide.secuore,
-                            decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(30),
-                                    borderSide: const BorderSide(
-                                        width: 2,
-                                        color: ColorManager.dark_blue)),
-                                focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(30),
-                                    borderSide: const BorderSide(
-                                        width: 2,
-                                        color: ColorManager.dark_blue)),
-                                labelText: 'Password',
-                                labelStyle: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: ColorManager.dark_blue),
-                                suffixIcon: IconButton(
-                                  onPressed: () {
-                                    provide.changeSecuore();
-                                  },
-                                  icon:  (provide.secuore)?const Icon(
-                                    Icons.visibility,
-                                    color: ColorManager.dark_blue,
-                                  ):const Icon(
-                                    Icons.visibility_off,
-                                    color: ColorManager.dark_blue,
-                                  ),
-                                ))),
-                        SizedBox(
-                          height: 30.h,
-                        ),
-                        Center(
-                          child: SizedBox(
-                            width: 350.w,
-                            height: 50.h,
-                            child: ElevatedButton(
-                              onPressed: () async {
-                                if (formkey.currentState!.validate()) {
-                                  context.pushNamed(Routes.mainNav);
-                                }
-                              },
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: ColorManager.dark_blue,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20))),
+                            obsecure: provide.secuore,
+                          ),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          TextButton(
+                              onPressed: () {},
                               child: Text(
-                                'Login',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headlineSmall
-                                    ?.copyWith(color: Colors.white),
-                              ),
+                                'Forget Password',
+                                style: AppTextStyle.fontsizebold16
+                                    .copyWith(color: ColorManager.dark_blue),
+                              )),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: SizedBox(
+                              height: 50.h,
+                              width: double.infinity,
+                              child: ElvatedButtonComponent(
+                                  txt: 'Login',
+                                  voidCallback: () {
+                                    if (formKey.currentState!.validate()) {
+                                      context.pushNamed(Routes.mainNav);
+                                    }
+                                  }),
                             ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 25,
-                        ),
-                        const Text(
-                          "If you don't have account?",
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.grey),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            // Navigator.push(context, MaterialPageRoute(builder: (context)=>Register()));
-                            context.pushNamed(Routes.Register);
-                          },
-                          child: Text(
-                            'Register',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyLarge
-                                ?.copyWith(
-                                    color: ColorManager.dark_blue,
-                                    fontSize: 20),
+                          SizedBox(
+                            height: 5.h,
                           ),
-                        )
-                      ],
+                          Padding(
+                            padding:  EdgeInsets.only(left: 20.w),
+                            child: const NavToRegister(),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),

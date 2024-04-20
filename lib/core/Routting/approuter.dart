@@ -12,10 +12,13 @@ import 'package:home_services/view/Home/ui/widget/bottom_nav_bar.dart';
 import 'package:home_services/view/login/ui/login_screen.dart';
 import 'package:home_services/view/onboarding/ui/Onboarding.dart';
 import 'package:home_services/view/register/ui/register_screen.dart';
+import 'package:home_services/view/splash_screen/screens/splash_screen.dart';
 
 class AppRouter {
   Route generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case Routes.Splash:
+        return MaterialPageRoute(builder: (_) => const Splash());
       case Routes.Onboarding:
         return MaterialPageRoute(builder: (_) => const Onboarding());
       case Routes.Login:

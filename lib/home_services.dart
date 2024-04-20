@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_services/core/Routting/Routs.dart';
 import 'package:home_services/core/Routting/approuter.dart';
 import 'package:home_services/core/Theming/colors.dart';
+import 'package:home_services/view/splash_screen/screens/splash_screen.dart';
 
 class Services extends StatelessWidget {
   const Services({super.key, required this.appRouter});
@@ -22,7 +23,7 @@ class Services extends StatelessWidget {
             scaffoldBackgroundColor: Colors.white),
         debugShowCheckedModeBanner: false,
         onGenerateRoute: appRouter.generateRoute,
-        initialRoute: Routes.home,
+        initialRoute: Routes.Splash,
       ),
     );
   }
