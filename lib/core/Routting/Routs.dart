@@ -4,7 +4,7 @@ class Routes {
  static const String Register='/Register_screen';
  static const String updateProfile = '/update_profile_screen';
   static const String home = '/home';
-  static const String doctors = '/doctors_screen';
+  static const String Splash = '/Splash';
   static const String AcademicLevel = '/AcademicLevel';
   static const String CsCoursesDetelies = '/CsCoursesDetelies';
   static const String Level1Cs = '/Level1Cs';

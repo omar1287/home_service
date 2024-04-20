@@ -13,4 +13,5 @@ void changeSecuore(){
   emit(ChangeSecuoreState());
 }
 
+
 }

@@ -12,5 +12,9 @@ class RegisterCubit extends Cubit<RegisterState>{
     secuore=!secuore;
     emit(ChangeSecuoreState());
   }
-
+  bool secuore2 = true;
+  void changeSecuore2(){
+    secuore2=!secuore2;
+    emit(ChangeSecuore2State());
+  }
 }

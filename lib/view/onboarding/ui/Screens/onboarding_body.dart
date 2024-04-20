@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_services/core/Helpers/extension.dart';
 import 'package:home_services/core/Routting/Routs.dart';
+import 'package:home_services/core/Theming/colors.dart';
+import 'package:home_services/core/Theming/textstyle.dart';
 import 'package:home_services/view/onboarding/ui/Screens/onchange.dart';
 import 'package:home_services/view/onboarding/ui/Screens/onchange_method.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -14,18 +16,18 @@ class OnboardingBody extends StatelessWidget {
   var controllPage = PageController();
   bool cc = false;
 
-  List<onChange> ll = [
+  List<onChange> listOfImages= [
     onChange(
-        im: 'https://recruiteze.com/wp-content/uploads/2021/11/Onboarding-amico-768x768.png',
-        t1: 'The home service',
+        im: 'assets/images/carpenter1.jpg',
+        t1: 'Find best solution for your home',
         t2: 'accounts for nearly all the trades and materials that serve homeowners, homeowners associations, and even commercial services.'),
     onChange(
-        im: 'https://teaminsights.io/wp-content/uploads/2021/03/Onboarding-pana-1.png',
-        t1: 'HVAC Services',
+        im: 'assets/images/carpenter2.jpg',
+        t1: 'Provide best quality service in budget ',
         t2: 'One of the largest segments of the home service businesses includes heating, ventilation'),
     onChange(
-        im: 'https://cezannehr.com/wp-content/uploads/2022/07/How-to-make-onboarding-a-stress-free-experience-for-your-new-hires.png',
-        t1: 'Electricians',
+        im: 'assets/images/carpenter3.jpg',
+        t1: 'Get best service experience with us ',
         t2: 'Electrical installation, maintenance, and repair are high-demand services for homeowners.'),
   ];
 
@@ -45,7 +47,9 @@ class OnboardingBody extends StatelessWidget {
               onPressed: goToLoginScreen,
               child: Text(
                 'Skip',
-                style: Theme.of(context).textTheme.bodyLarge,
+                style: AppTextStyle.fontsizebold20.copyWith(
+                  color: ColorManager.dark_blue
+                ),
               ))
         ],
         backgroundColor: Colors.white,
@@ -57,7 +61,7 @@ class OnboardingBody extends StatelessWidget {
             Expanded(
               child: PageView.builder(
                 onPageChanged: (int index) {
-                  if (index == ll.length - 1) {
+                  if (index == listOfImages.length - 1) {
                     cc = true;
                   } else {
                     cc = false;
@@ -65,22 +69,23 @@ class OnboardingBody extends StatelessWidget {
                 },
                 controller: controllPage,
                 itemBuilder: (context, index) {
-                  return onchangeMethod(ll[index]);
+                  return onchangeMethod(listOfImages[index]);
                 },
-                itemCount: ll.length,
+                itemCount: listOfImages.length,
               ),
             ),
             Row(
               children: [
                 SmoothPageIndicator(
                   controller: controllPage,
-                  count: ll.length,
+
+                  count: listOfImages.length,
                   effect:  ExpandingDotsEffect(
                       dotColor: Colors.grey,
-                      activeDotColor: Colors.black,
+                      activeDotColor: ColorManager.dark_blue,
                       dotHeight: 10.h,
                       dotWidth: 10.w,
-                      spacing: 10),
+                      spacing: 10,),
                 ),
                 const Spacer(),
                 FloatingActionButton(
@@ -95,7 +100,7 @@ class OnboardingBody extends StatelessWidget {
                   backgroundColor: Colors.white,
                   child: const Icon(
                     Icons.arrow_forward_ios_outlined,
-                    color: Colors.black,
+                    color: ColorManager.dark_blue,
                   ),
                 )
               ],
