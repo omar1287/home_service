@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:home_services/core/Helpers/extension.dart';
 import 'package:home_services/core/Routting/Routs.dart';
 import 'package:home_services/core/Theming/textstyle.dart';
 import 'package:home_services/view/Home/ui/widget/best_service_home.dart';
@@ -25,7 +26,9 @@ class _BestServicesBodyState extends State<BestServicesBody> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                onPressed: () {}, icon: Icon(Icons.arrow_back),),
+                onPressed: () {
+                  context.pop();
+                }, icon: Icon(Icons.arrow_back),),
                 Text('Best Services',style:AppTextStyle.fontsizebold20semi),
                 IconButton(onPressed: (){}, icon: Icon(Icons.search_outlined))
               ],
