@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_services/core/Helpers/extension.dart';
 import 'package:home_services/core/Routting/Routs.dart';
 import 'package:home_services/core/Theming/colors.dart';
@@ -27,9 +28,9 @@ class HomeBody extends StatelessWidget {
               child: Column(
                 children: [
                   CustomAppBar(),
-                  const SizedBox(height: 10,),
+                   SizedBox(height: 20.h,),
                   SearchBarAndSet(),
-                  const SizedBox(height: 10,),
+                   SizedBox(height: 20.h,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -38,7 +39,7 @@ class HomeBody extends StatelessWidget {
                       TextButton(onPressed: () {
                         context.pushNamed(Routes.category);
                       },
-                      child: Text('See All',style: TextStyle(color: ColorManager.mainblue,fontSize: 20),)),
+                      child: Text('See All',style: TextStyle(color: ColorManager.blueHome,fontSize: 15),)),
                     ],
                   ),
                   const SizedBox(height: 10,),
@@ -52,10 +53,12 @@ class HomeBody extends StatelessWidget {
                       TextButton(onPressed: () {
                         context.pushNamed(Routes.BestServices);
                       },
-                      child: Text('See All',style: TextStyle(color: ColorManager.mainblue,fontSize: 20),)),
+                      child: Text('See All',style: TextStyle(color: ColorManager.blueHome,fontSize: 15),)),
                     ],
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(height: 10.h,),
+                  BestServiceHome(),
+                  SizedBox(height: 10.h,),
                   BestServiceHome(),
                   
                 ],

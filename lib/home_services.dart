@@ -22,7 +22,7 @@ class Services extends StatelessWidget {
             scaffoldBackgroundColor: Colors.white),
         debugShowCheckedModeBanner: false,
         onGenerateRoute: appRouter.generateRoute,
-        initialRoute: Routes.Onboarding,
+        initialRoute: Routes.home,
       ),
     );
   }
